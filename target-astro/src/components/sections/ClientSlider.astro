@@ -1,0 +1,15 @@
+---
+// src/components/sections/ClientSlider.astro
+import { CLIENTS } from '../../data/site';
+
+// Duplicate array for seamless infinite loop
+const logos = [...CLIENTS, ...CLIENTS];
+---
+
+<section class="py-10 border-y border-neutral-900 bg-neutral-950/50 slider-container">
+  <div class="slider-track">
+    <div class="flex items-center">
+      {logos.map((client) => <div class="client-logo">{client}</div>)}
+    </div>
+  </div>
+</section>

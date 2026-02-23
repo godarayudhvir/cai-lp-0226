@@ -1,0 +1,154 @@
+---
+// src/components/sections/Contact.astro
+import { SITE } from '../../data/site';
+---
+
+<section id="contact" class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+  <div class="grid lg:grid-cols-2 gap-16 items-start">
+    <div>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tighter">
+        Ready to <span class="text-blue-500">connect?</span>
+      </h2>
+      <p class="text-neutral-400 mb-10 text-lg">
+        Connect with our engineering team to discuss your needs.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a
+          href={SITE.whatsapp}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-green-500/50 transition group"
+        >
+          <i class="bi bi-whatsapp text-2xl text-green-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >WhatsApp</span
+          >
+        </a>
+        <a
+          href={`tel:${SITE.phone}`}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-blue-500/50 transition group"
+        >
+          <i class="bi bi-telephone text-2xl text-blue-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >Call Now</span
+          >
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-orange-500/50 transition group"
+        >
+          <i class="bi bi-envelope text-2xl text-orange-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >Email Us</span
+          >
+        </a>
+        <a
+          href={SITE.socials.instagram}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-pink-500/50 transition group"
+        >
+          <i class="bi bi-instagram text-2xl text-pink-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >Instagram</span
+          >
+        </a>
+        <a
+          href={SITE.socials.facebook}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-blue-500/50 transition group"
+        >
+          <i class="bi bi-facebook text-2xl text-blue-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >Facebook</span
+          >
+        </a>
+        <a
+          href={SITE.socials.linkedin}
+          class="flex flex-col items-center justify-center p-4 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-blue-500/50 transition group"
+        >
+          <i class="bi bi-linkedin text-2xl text-blue-500 mb-2"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-neutral-500 group-hover:text-white"
+            >LinkedIn</span
+          >
+        </a>
+      </div>
+    </div>
+
+    <div class="glass-card p-6 md:p-10 rounded-3xl border border-neutral-800 shadow-2xl">
+      <h3 class="text-xl font-bold mb-8 flex items-center">Consult us now</h3>
+
+      <form action="https://api.web3forms.com/submit" method="POST" id="it-contact-form">
+        <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+        <input type="hidden" name="subject" value="New Business Inquiry - Cyber Alliance" />
+
+        <div id="ref-section" class="mb-6">
+          <input type="hidden" name="ref_tag" id="hidden-ref-input" />
+          <div id="manual-ref-field" style="display: none;">
+            <label class="text-[10px] uppercase tracking-widest text-neutral-500 font-bold mb-2 block">
+              Referral Code (Optional)
+            </label>
+            <input
+              type="text"
+              name="manual_ref_code"
+              placeholder="Enter partner code"
+              class="w-full bg-black border border-neutral-800 p-4 rounded-xl outline-none focus:border-blue-500 text-sm"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required
+            class="bg-black border border-neutral-800 p-4 rounded-xl outline-none focus:border-blue-500 transition text-sm"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Work Email"
+            required
+            class="bg-black border border-neutral-800 p-4 rounded-xl outline-none focus:border-blue-500 transition text-sm"
+          />
+        </div>
+
+        <textarea
+          name="message"
+          rows="4"
+          required
+          placeholder="Tell us about your IT infrastructure needs..."
+          class="w-full bg-black border border-neutral-800 p-4 rounded-xl mb-6 outline-none focus:border-blue-500 transition text-sm"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all tracking-widest uppercase text-xs"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function handleReferral() {
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get('ref');
+      const hiddenInput = document.getElementById('hidden-ref-input') as HTMLInputElement | null;
+      const manualField = document.getElementById('manual-ref-field');
+
+      if (ref && hiddenInput) {
+        hiddenInput.value = ref;
+        if (manualField) manualField.style.display = 'none';
+      } else {
+        if (manualField) manualField.style.display = 'block';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleReferral);
+    } else {
+      handleReferral();
+    }
+  })();
+</script>

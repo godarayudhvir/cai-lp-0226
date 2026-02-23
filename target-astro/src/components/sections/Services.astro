@@ -1,0 +1,73 @@
+---
+// src/components/sections/Services.astro
+import { SERVICES } from '../../data/site';
+
+const colorMap = {
+
+  blue: { icon: 'text-blue-500', hover: 'hover:border-blue-500/50', border: 'text-blue-500' },
+  teal: { icon: 'text-teal-500', hover: 'hover:border-teal-500/50', border: 'text-teal-500' },
+  purple: { icon: 'text-purple-500', hover: 'hover:border-purple-500/50', border: 'text-purple-500' },
+  orange: { icon: 'text-orange-500', hover: 'hover:border-orange-500/50', border: 'text-orange-500' },
+};
+---
+
+<section id="services" class="py-16 md:py-24 px-6 bg-neutral-950/30">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+        Our <span class="gradient-text">Expertise.</span>
+      </h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto">
+        Precision-engineered solutions tailored for modern digital ecosystems.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {
+        SERVICES.map((svc) => {
+          const c = colorMap[svc.color];
+          return (
+            <div class={`glass-card p-8 rounded-3xl ${c.hover} transition-all group`}>
+              <div
+                class={`w-14 h-14 bg-${svc.color}-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition`}
+              >
+                <i class={`bi ${svc.icon} ${c.icon} text-2xl`} />
+              </div>
+              <h3 class="text-xl font-bold mb-3">{svc.title}</h3>
+              <p class="text-sm text-neutral-400 leading-relaxed mb-4">{svc.description}</p>
+              <ul class="text-[11px] uppercase tracking-wider text-neutral-500 space-y-2">
+                {svc.items.map((item) => (
+                  <li>
+                    <i class={`bi bi-chevron-right ${c.border} mr-2`} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12">
+      <a
+        href="/portfolio"
+        class="w-full sm:w-auto text-center px-8 py-3 rounded-full font-bold text-neutral-300 transition-all border border-neutral-700 bg-neutral-900/50 hover:bg-neutral-800 hover:text-white hover:border-neutral-500 inline-flex items-center justify-center gap-2"
+      >
+        Explore Portfolio
+      </a>
+      <a
+        href="/pricing"
+        class="w-full sm:w-auto text-center px-8 py-3 rounded-full font-bold text-neutral-300 transition-all border border-neutral-700 bg-neutral-900/50 hover:bg-neutral-800 hover:text-white hover:border-neutral-500 inline-flex items-center justify-center gap-2"
+      >
+        Pricing Tiers
+      </a>
+      <a
+        href="/referral"
+        class="w-full sm:w-auto text-center px-8 py-3 rounded-full font-bold text-neutral-300 transition-all border border-neutral-700 bg-neutral-900/50 hover:bg-neutral-800 hover:text-white hover:border-neutral-500 inline-flex items-center justify-center gap-2"
+      >
+        Refer & Earn
+      </a>
+    </div>
+  </div>
+</section>

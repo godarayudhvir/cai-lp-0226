@@ -1,0 +1,45 @@
+---
+// src/layouts/PolicyLayout.astro
+import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  badge: string;
+  heading: string;
+  highlight: string;
+  lastUpdated: string;
+}
+
+const { title, description, badge, heading, highlight, lastUpdated } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+
+  <header class="pt-40 pb-16 px-6 border-b border-neutral-900">
+    <div class="max-w-4xl mx-auto">
+      <span
+        class="px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest bg-blue-500/5"
+      >
+        {badge}
+      </span>
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 mt-6 tracking-tighter">
+        {heading} <span class="gradient-text">{highlight}</span>
+      </h1>
+      <p class="text-neutral-500 font-medium">
+        Last Updated: {lastUpdated} | Effective Date: {lastUpdated}
+      </p>
+    </div>
+  </header>
+
+  <main class="py-20 px-6">
+    <div class="max-w-4xl mx-auto glass-card p-8 md:p-16 rounded-3xl policy-content">
+      <slot />
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

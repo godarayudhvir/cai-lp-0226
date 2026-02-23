@@ -1,0 +1,94 @@
+---
+// src/components/sections/Videos.astro
+import { IBRACORP_VIDEOS } from '../../data/site';
+---
+
+<section id="videos" class="py-20 bg-[#0a0a0a] border-t border-neutral-900">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
+          Meet Team <span class="gradient-text">IBRACORP</span>
+        </h2>
+        <p class="text-neutral-400">
+          Giving a shoutout to our friends at <span class="text-blue-500 font-bold">IBRACORP</span
+          >. While we build our own original content, enjoy their expert guides on security and
+          open-source tech.
+        </p>
+      </div>
+      <a
+        href="https://www.youtube.com/@IBRACORP"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-blue-500 font-bold uppercase tracking-widest text-sm flex items-center hover:text-blue-400 transition"
+      >
+        View Channel <i class="bi bi-box-arrow-up-right ml-2"></i>
+      </a>
+    </div>
+
+    <div class="relative group">
+      <div id="video-scroller" class="flex gap-6 overflow-x-auto pb-8 snap-x no-scrollbar">
+        {
+          IBRACORP_VIDEOS.map((vid) => (
+            <div class="min-w-[300px] md:min-w-[450px] snap-center">
+              <div
+                class="glass-card rounded-3xl overflow-hidden border border-neutral-800 aspect-video relative group/item cursor-pointer js-play-video"
+                data-video-id={vid.id}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${vid.id}/maxresdefault.jpg`}
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  alt={vid.title}
+                />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition">
+                  <i class="bi bi-play-circle-fill text-6xl text-white/80" />
+                </div>
+                <div class="video-container absolute inset-0" />
+              </div>
+              <h3 class="mt-4 font-bold text-lg">{vid.title}</h3>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="absolute top-1/2 -left-4 -translate-y-1/2 hidden md:block">
+        <button
+          id="scroll-left"
+          class="p-3 bg-black/50 border border-neutral-800 rounded-full hover:bg-blue-500 transition"
+        >
+          <i class="bi bi-chevron-left text-white"></i>
+        </button>
+      </div>
+      <div class="absolute top-1/2 -right-4 -translate-y-1/2 hidden md:block">
+        <button
+          id="scroll-right"
+          class="p-3 bg-black/50 border border-neutral-800 rounded-full hover:bg-blue-500 transition"
+        >
+          <i class="bi bi-chevron-right text-white"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('scroll-left')?.addEventListener('click', () => {
+    document.getElementById('video-scroller')?.scrollBy({ left: -400, behavior: 'smooth' });
+  });
+  document.getElementById('scroll-right')?.addEventListener('click', () => {
+    document.getElementById('video-scroller')?.scrollBy({ left: 400, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.js-play-video').forEach((el) => {
+    el.addEventListener('click', function (this: HTMLElement) {
+      const videoId = this.dataset.videoId;
+      if (!videoId) return;
+      this.querySelector('img')?.remove();
+      this.querySelector('.absolute.inset-0.flex')?.remove();
+      const wrapper = this.querySelector('.video-container') as HTMLElement;
+      if (wrapper) {
+        wrapper.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,29 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import ClientSlider from '../components/sections/ClientSlider.astro';
+import About from '../components/sections/About.astro';
+import Services from '../components/sections/Services.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import VideoTestimonials from '../components/sections/VideoTestimonials.astro';
+import Blog from '../components/sections/Blog.astro';
+import Videos from '../components/sections/Videos.astro';
+import Contact from '../components/sections/Contact.astro';
+---
+
+<BaseLayout>
+  <Navbar variant="home" />
+  <Hero />
+  <ClientSlider />
+  <About />
+  <Services />
+  <Testimonials />
+  <VideoTestimonials />
+  <Blog />
+  <Videos />
+  <Contact />
+  <Footer variant="full" />
+</BaseLayout>

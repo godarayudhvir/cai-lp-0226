@@ -1,0 +1,70 @@
+---
+// src/pages/portfolio.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Portfolio - Cyber Alliance India | Built with Intent"
+  description="Our work — websites, apps, and infrastructure engineered with intent."
+>
+  <Navbar variant="page" />
+
+  <header class="pt-40 pb-16 px-6 border-b border-neutral-900">
+    <div class="max-w-4xl mx-auto">
+      <span
+        class="px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest bg-blue-500/5"
+        >Our Work</span
+      >
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 mt-6 tracking-tighter">
+        Built with <span class="gradient-text">Intent.</span>
+      </h1>
+      <p class="text-neutral-500 font-medium max-w-2xl">
+        A curated selection of projects we've engineered — from landing pages to enterprise
+        infrastructure.
+      </p>
+    </div>
+  </header>
+
+  <main class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        [
+          { name: 'Suwaco Hydrochem', type: 'Multi-page Website', color: 'blue' },
+          { name: 'DostHaus Cafe', type: 'Landing Page + Menu', color: 'teal' },
+          { name: 'HanKuk C&T', type: 'Corporate Website', color: 'purple' },
+          { name: 'Sarthak Enterprises', type: 'Business Website', color: 'orange' },
+          { name: 'EsselZone', type: 'Web Application', color: 'blue' },
+          { name: 'ja:am sleepwear', type: 'Shopify E-commerce', color: 'pink' },
+        ].map((project) => (
+          <div class="glass-card rounded-3xl overflow-hidden border border-neutral-800 hover:border-blue-500/40 transition group">
+            <div class={`h-40 bg-${project.color}-500/5 border-b border-neutral-800 flex items-center justify-center`}>
+              <span class={`text-${project.color}-500 font-mono text-xs uppercase tracking-widest`}>
+                {project.type}
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-1">{project.name}</h3>
+              <p class="text-sm text-neutral-500">{project.type}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-16">
+      <p class="text-neutral-500 mb-6">
+        Want to see live demos or detailed case studies? Reach out directly.
+      </p>
+      <a
+        href="/#contact"
+        class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </main>
+
+  <Footer variant="minimal" />
+</BaseLayout>

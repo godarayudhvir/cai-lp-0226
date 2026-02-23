@@ -1,0 +1,114 @@
+---
+// src/components/sections/Blog.astro
+// Blog posts are fetched client-side from /posts/*.md
+---
+
+<section id="blog" class="py-24 px-6 bg-neutral-900/20 border-t border-neutral-900">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-12">
+      <h2 class="text-4xl font-extrabold tracking-tighter">
+        Wakarimasu <span class="text-blue-500">Tech.</span>
+      </h2>
+      <p class="text-neutral-500 mt-2">
+        Comprehensive guides on Linux systems administration, containerized deployments, and secure
+        self-hosted solutions.
+      </p>
+    </div>
+    <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+  </div>
+</section>
+
+<!-- Blog Modal -->
+<div
+  id="blog-modal"
+  class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
+>
+  <div
+    class="bg-neutral-950 border border-neutral-800 w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col shadow-2xl"
+  >
+    <div class="p-6 border-b border-neutral-800 flex justify-between items-center bg-neutral-900/50">
+      <span class="text-[10px] font-bold uppercase tracking-widest text-blue-500"
+        >Technical Journal</span
+      >
+      <button id="close-blog" class="text-neutral-400 hover:text-white transition-colors">
+        <i class="bi bi-x-circle-fill text-2xl"></i>
+      </button>
+    </div>
+    <div id="modal-content" class="p-8 md:p-16 overflow-y-auto blog-content"></div>
+  </div>
+</div>
+
+<script>
+  // Dynamically load marked.js for markdown parsing
+  const markedScript = document.createElement('script');
+  markedScript.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+  document.head.appendChild(markedScript);
+
+  async function initBlog() {
+    const container = document.getElementById('blog-container');
+    if (!container) return;
+
+    let i = 1;
+    let active = true;
+
+    while (active) {
+      try {
+        const res = await fetch(`/posts/${i}.md`);
+        if (!res.ok) { active = false; break; }
+
+        const contentType = res.headers.get('content-type');
+        if (contentType?.includes('text/html')) { active = false; break; }
+
+        const text = await res.text();
+        if (text.trim().startsWith('<!DOCTYPE') || text.trim().startsWith('<html')) {
+          active = false;
+          break;
+        }
+
+        const title = text.match(/^# (.*)/m)?.[1] ?? 'Untitled Post';
+        const img =
+          text.match(/!\[.*\]\((.*)\)/)?.[1] ??
+          'https://images.unsplash.com/photo-1451187580459-43490279c0fa';
+        const desc =
+          text.match(/^> (.*)/m)?.[1] ?? 'Engineering insights from the Cyber Alliance team.';
+
+        const card = document.createElement('div');
+        card.className =
+          'glass-card rounded-3xl overflow-hidden border border-neutral-800 flex flex-col hover:border-blue-500/40 transition group cursor-pointer';
+        card.onclick = () => openBlog(text);
+        card.innerHTML = `
+          <div class="h-48 overflow-hidden">
+            <img src="${img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="${title}" />
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-lg mb-2">${title}</h3>
+            <p class="text-sm text-neutral-500 mb-6 line-clamp-2">${desc}</p>
+            <button class="text-blue-500 text-[10px] font-bold uppercase tracking-widest flex items-center">
+              View Article <i class="bi bi-arrow-right ml-2"></i>
+            </button>
+          </div>`;
+        container.appendChild(card);
+        i++;
+      } catch {
+        active = false;
+      }
+    }
+  }
+
+  function openBlog(md: string) {
+    const content = document.getElementById('modal-content');
+    const modal = document.getElementById('blog-modal');
+    if (content && modal && (window as any).marked) {
+      content.innerHTML = (window as any).marked.parse(md);
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  document.getElementById('close-blog')?.addEventListener('click', () => {
+    document.getElementById('blog-modal')?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+
+  document.addEventListener('DOMContentLoaded', initBlog);
+</script>

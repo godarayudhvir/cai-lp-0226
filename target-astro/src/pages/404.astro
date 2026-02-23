@@ -1,0 +1,24 @@
+---
+// src/pages/404.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="404 - Page Not Found | Cyber Alliance India">
+  <Navbar variant="page" />
+  <div class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+    <span class="font-mono text-8xl font-extrabold text-neutral-800 select-none">404</span>
+    <h1 class="text-3xl font-extrabold mt-4 mb-3">Page not found</h1>
+    <p class="text-neutral-500 mb-8 max-w-md">
+      This route doesn't exist in our infrastructure. Head back to home base.
+    </p>
+    <a
+      href="/"
+      class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition"
+    >
+      Back to Home
+    </a>
+  </div>
+  <Footer variant="minimal" />
+</BaseLayout>

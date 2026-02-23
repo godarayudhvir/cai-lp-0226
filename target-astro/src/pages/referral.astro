@@ -1,0 +1,307 @@
+---
+// src/pages/referral.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title="Referral Policy - Cyber Alliance India | Built with Intent"
+  description="Official commission payout framework for Web/WebApp development referrals."
+>
+  <Navbar variant="page" rightLinks={[{ label: 'FAQ', href: '#faq' }]} />
+
+  <section class="pt-40 pb-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <span
+        class="px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] bg-blue-500/5"
+        >Partnership Program</span
+      >
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 mt-6 tracking-tighter leading-none">
+        Referral <span class="gradient-text">Policy.</span>
+      </h1>
+      <p class="text-lg text-neutral-400 font-light max-w-2xl">
+        Official commission payout framework for Web/WebApp development referrals.
+      </p>
+      <br />
+      <div class="flex flex-wrap gap-4 mb-12">
+        <a
+          href={SITE.whatsapp}
+          aria-label="Submit lead via WhatsApp"
+          class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-blue-500 hover:text-white transition transform hover:-translate-y-1 flex items-center"
+        >
+          <i class="bi bi-whatsapp mr-2 text-xl"></i> Submit via WhatsApp
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          aria-label="Submit lead via Email"
+          class="bg-neutral-900 border border-neutral-800 text-white px-8 py-4 rounded-2xl font-bold hover:border-blue-500 transition transform hover:-translate-y-1 flex items-center"
+        >
+          <i class="bi bi-envelope mr-2 text-xl"></i> Submit via Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-5xl mx-auto px-6 pb-24 space-y-8">
+    <!-- Commission Tiers Table -->
+    <section id="tiers" class="glass-card rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl">
+      <div class="p-8 border-b border-neutral-800 flex justify-between items-end bg-neutral-900/40">
+        <h3 class="text-2xl font-bold">Standard Commission Tiers</h3>
+        <div class="text-right hidden md:block">
+          <span class="text-[10px] text-neutral-500 uppercase font-bold tracking-widest">LAST UPDATED</span>
+          <p class="text-xs font-mono">30 DECEMBER 2025</p>
+        </div>
+      </div>
+      <div class="p-4 md:hidden text-[10px] text-neutral-500 italic">Swipe right to view full table →</div>
+      <div class="overflow-x-auto">
+        <table class="data-table w-full min-w-[600px] md:min-w-full">
+          <thead>
+            <tr>
+              <th>Project Value (NET)</th>
+              <th>Commission %</th>
+              <th>Lead Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up to ₹50,000</td>
+              <td class="text-white font-bold">5%</td>
+              <td><span class="px-2 py-0.5 bg-neutral-800 rounded text-[10px]">Standard</span></td>
+            </tr>
+            <tr>
+              <td>₹50,001 — ₹3,00,000</td>
+              <td class="text-blue-400 font-bold">8%</td>
+              <td><span class="px-2 py-0.5 bg-neutral-800 rounded text-[10px]">Standard</span></td>
+            </tr>
+            <tr>
+              <td>₹3,00,001 — ₹5,00,000</td>
+              <td class="text-blue-400 font-bold">10%</td>
+              <td
+                ><span class="px-2 py-0.5 bg-blue-900/30 text-blue-400 rounded text-[10px]">Priority</span
+                ></td
+              >
+            </tr>
+            <tr class="bg-blue-500/5">
+              <td class="text-white">Over ₹5,00,000</td>
+              <td class="text-teal-400 font-bold">12.5%</td>
+              <td
+                ><span class="px-2 py-0.5 bg-teal-900/30 text-teal-400 rounded text-[10px]">Strategic</span
+                ></td
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Elite Partner -->
+    <div id="elite" class="relative group">
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-teal-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"
+      >
+      </div>
+      <div class="relative glass-card p-8 rounded-3xl border border-blue-500/30">
+        <div class="grid md:grid-cols-3 gap-8 items-center">
+          <div class="md:col-span-2">
+            <h3 class="text-2xl font-bold mb-4">Elite Partner Program</h3>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+              Reserved for repeat partners with 5+ successful referrals or active AMC management.
+              This tier represents our commitment to long-term partnership.
+            </p>
+          </div>
+          <div class="bg-black/50 p-6 rounded-2xl border border-neutral-800 text-center">
+            <span class="text-[10px] text-neutral-500 uppercase font-bold tracking-widest mb-1 block"
+              >Flat Commission</span
+            >
+            <span class="text-4xl font-extrabold text-white">15%</span>
+            <div class="mt-4 pt-4 border-t border-neutral-800">
+              <span class="text-[10px] text-teal-500 uppercase font-bold"
+                >Max Payout ₹ 3,00,000 / referral</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eligibility & Disbursement -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <section id="eligibility" class="glass-card p-8 rounded-3xl border border-neutral-800">
+        <h3 class="text-xl font-bold mb-6 flex items-center">
+          <i class="bi bi-shield-check text-blue-500 mr-3"></i> Eligibility Protocol
+        </h3>
+        <ul class="policy-list">
+          <li>Applicable exclusively to Web Development, Webapp, and Native App (Android/iOS) projects.</li>
+          <li>Referrer must provide Lead Name, Contact, and Project Brief <strong>before</strong> the client initiates direct contact.</li>
+          <li>Commission is paid solely for new client acquisitions.</li>
+          <li>Leads remain valid for <strong>30 calendar days</strong> from acknowledgment.</li>
+          <li>Individuals are ineligible to refer their own company.</li>
+        </ul>
+      </section>
+
+      <section id="disbursement" class="glass-card p-8 rounded-3xl border border-neutral-800">
+        <h3 class="text-xl font-bold mb-6 flex items-center">
+          <i class="bi bi-cash-stack text-blue-500 mr-3"></i> Disbursement Logic
+        </h3>
+        <ul class="policy-list">
+          <li>Payouts triggered only after Cyber Alliance receives <strong>full project payment</strong>.</li>
+          <li>Commissions disbursed within 15 business days via NEFT/IMPS/UPI.</li>
+          <li>Calculated on Net Project Value (excluding taxes, hosting, and domain costs).</li>
+          <li>Standard payouts capped at <strong>₹1,00,000</strong> per referral unless Elite Status is active.</li>
+          <li><strong>TDS Deduction:</strong> 5% statutory TDS deducted per Section 194H.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Operational Workflow -->
+    <section id="workflow" class="mt-16">
+      <div class="flex items-center mb-10">
+        <div class="w-2 h-8 bg-blue-600 mr-4"></div>
+        <h2 class="text-2xl font-bold tracking-tighter uppercase">
+          Operational <span class="text-blue-500">Workflow</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          [
+            {
+              n: '01',
+              icon: 'bi-chat-left-dots',
+              title: 'Initial Intake',
+              desc: 'Referrer transmits lead identity and core technical requirements to the engineering team via WhatsApp or Email.',
+            },
+            {
+              n: '02',
+              icon: 'bi-link-45deg',
+              title: 'Lead Attribution',
+              desc: 'A unique tracking URL is issued, valid for a 30-day conversion window.',
+            },
+            {
+              n: '03',
+              icon: 'bi-terminal',
+              title: 'Project Scoping',
+              desc: 'Lead executes submission via the official form. Quote including all third-party costs is sent.',
+            },
+            {
+              n: '04',
+              icon: 'bi-shield-lock',
+              title: 'Secure Onboarding',
+              desc: 'Client validates terms via a non-refundable retainer (25% or 50% depending on scope).',
+            },
+            {
+              n: '05',
+              icon: 'bi-cpu',
+              title: 'Technical Gating',
+              desc: 'Development follows strict milestone gating with verified progress payments.',
+            },
+            {
+              n: '06',
+              icon: 'bi-currency-rupee',
+              title: 'Payout Execution',
+              desc: 'Final commission (minus 5% TDS) is transmitted via NEFT/UPI within 15 days of verified fund receipt.',
+              highlight: true,
+            },
+          ].map((step) => (
+            <div
+              class={`glass-card p-8 rounded-3xl ${step.highlight ? 'border-teal-500/20 bg-teal-500/5 hover:border-teal-500/50' : 'border-neutral-800 hover:border-blue-500/50'} transition-all duration-500 group relative overflow-hidden`}
+            >
+              <div class="absolute top-0 right-0 p-4 font-mono text-4xl opacity-5 group-hover:opacity-20 transition-opacity">
+                {step.n}
+              </div>
+              <div
+                class={`w-12 h-12 rounded-xl ${step.highlight ? 'bg-teal-500/20 border-teal-500/40' : 'bg-blue-500/10 border-blue-500/20'} flex items-center justify-center mb-6 border`}
+              >
+                <i class={`bi ${step.icon} ${step.highlight ? 'text-teal-500' : 'text-blue-500'} text-xl`} />
+              </div>
+              <h4
+                class={`font-bold ${step.highlight ? 'text-teal-400' : 'text-white'} text-lg mb-3 uppercase tracking-tight`}
+              >
+                {step.title}
+              </h4>
+              <p class="text-sm text-neutral-400 leading-relaxed">{step.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- FAQ & Calculator -->
+    <section id="faq" class="space-y-6">
+      <div class="flex items-center mb-6">
+        <div class="w-2 h-8 bg-blue-600 mr-4"></div>
+        <h2 class="text-2xl font-bold tracking-tighter uppercase">
+          Commission <span class="text-blue-500">Calculator & FAQ</span>
+        </h2>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl border border-neutral-800">
+        <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-widest text-blue-400">
+          Calculation Examples
+        </h4>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-black/40 p-4 rounded-xl border border-neutral-800">
+            <p class="text-[10px] text-neutral-500 font-bold uppercase mb-2">Elite (Under Cap)</p>
+            <p class="text-xs text-neutral-400">Net Project Value: ₹10,00,000</p>
+            <p class="text-xs text-neutral-400">Rate: 15%</p>
+            <p class="text-lg font-bold text-teal-400 mt-1">
+              ₹1,50,000 <span class="text-[10px] font-normal text-neutral-500">(-5% TDS)</span>
+            </p>
+          </div>
+          <div class="bg-black/40 p-4 rounded-xl border border-neutral-800">
+            <p class="text-[10px] text-orange-500 font-bold uppercase mb-2">Elite (Cap Reached)</p>
+            <p class="text-xs text-neutral-400">Net Project Value: ₹30,00,000</p>
+            <p class="text-xs text-neutral-400">Rate: 15% (₹4.5L)</p>
+            <p class="text-lg font-bold text-orange-500 mt-1">
+              ₹3,00,000 <span class="text-[10px] font-normal text-neutral-500">(-5% TDS)</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl border border-neutral-800">
+        <h4 class="text-white font-bold mb-2 text-sm">What kind of unique referral link?</h4>
+        <p class="text-xs text-neutral-400 leading-relaxed">
+          Upon successful onboarding as a partner, you are issued a unique tracking slug. Example:
+          <code class="text-blue-400 bg-blue-500/10 px-2 py-1 rounded">tsuro.in/yourname</code>
+          <br />
+          Any lead that lands via this link is automatically attributed to your account in our CRM.
+        </p>
+      </div>
+    </section>
+
+    <!-- Legal -->
+    <section id="legal">
+      <div class="glass-card p-8 rounded-3xl border border-neutral-800 bg-neutral-900/20">
+        <h3 class="text-xl font-bold mb-6 text-orange-500">Legal Compliance & Governance</h3>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
+              Taxation & TDS
+            </h4>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              Under the Income Tax Act of India (Sec 194H), a 5% TDS will be deducted from all
+              commissions. Referrers must provide PAN details for processing. Cyber Alliance
+              maintains absolute transparency; project quotes are never inflated to cover referral
+              fees.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
+              Modification & Jurisdiction
+            </h4>
+            <p class="text-xs text-neutral-500 leading-relaxed">
+              Cyber Alliance reserves the right to amend rates or terminate the program without
+              prior notice. This policy is governed by Indian law, with exclusive jurisdiction held
+              by the <strong>Courts of New Delhi</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer variant="minimal" />
+</BaseLayout>

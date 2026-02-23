@@ -1,0 +1,33 @@
+---
+// src/components/sections/VideoTestimonials.astro
+import { VIDEO_TESTIMONIALS } from '../../data/site';
+---
+
+<section id="video-testimonials" class="py-24 bg-neutral-950 border-t border-neutral-900">
+  <div class="max-w-7xl mx-auto px-6 mb-12 text-center">
+    <h2 class="text-4xl font-extrabold tracking-tighter">
+      Client <span class="text-blue-500">Stories.</span>
+    </h2>
+    <p class="text-neutral-500 mt-2">Engineering success, captured in motion.</p>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="video-track-centered">
+      {
+        VIDEO_TESTIMONIALS.map((v) => (
+          <div class="video-card glass-card rounded-3xl overflow-hidden relative group">
+            <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+              <source src={v.src} type="video/mp4" />
+            </video>
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent">
+              <p class="text-white font-bold text-sm">
+                {v.name}
+                <span class="text-neutral-400 ml-1">{v.handle}</span>
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

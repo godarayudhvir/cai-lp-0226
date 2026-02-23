@@ -1,0 +1,86 @@
+---
+// src/components/Footer.astro
+import { SITE } from '../data/site';
+
+interface Props {
+  variant?: 'full' | 'minimal';
+}
+
+const { variant = 'full' } = Astro.props;
+---
+
+<footer class="bg-black border-t border-neutral-900 pt-20 pb-10 px-6">
+  {
+    variant === 'full' ? (
+      <>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div class="col-span-1 md:col-span-2">
+            <div class="text-2xl font-extrabold mb-6 italic uppercase">
+              Cyber <span class="text-blue-500">Alliance</span> India
+            </div>
+            <p class="text-neutral-500 text-sm max-w-sm mb-6">
+              Building high-performance infrastructure and web applications with a focus on intent
+              and rapid execution.
+            </p>
+            <div class="flex space-x-4">
+              <a href={SITE.socials.github} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-github" />
+              </a>
+              <a href={SITE.socials.youtube} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-youtube" />
+              </a>
+              <a href={SITE.socials.instagram} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-instagram" />
+              </a>
+              <a href={SITE.socials.linkedin} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-linkedin" />
+              </a>
+              <a href={SITE.socials.twitter} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-twitter" />
+              </a>
+              <a href={SITE.socials.facebook} class="text-neutral-500 hover:text-white transition text-xl">
+                <i class="bi bi-facebook" />
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold mb-6 text-sm uppercase">Quick Links</h4>
+            <ul class="space-y-3 text-sm text-neutral-500">
+              <li>
+                <a href="/referral" class="hover:text-blue-500 transition">Referral Policy</a>
+              </li>
+              <li>
+                <a href="/pricing" class="hover:text-blue-500 transition">Services Pricing</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold mb-6 text-sm uppercase">Important Links</h4>
+            <ul class="space-y-3 text-sm text-neutral-500">
+              <li>
+                <a href="/terms" class="hover:text-blue-500 transition">Terms of Service</a>
+              </li>
+              <li>
+                <a href="/privacy" class="hover:text-blue-500 transition">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-neutral-900 pt-8 text-center text-[10px] text-neutral-600 uppercase tracking-widest">
+          © {new Date().getFullYear()} Cyber Alliance India | Built with Intent.
+        </div>
+      </>
+    ) : (
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-xl font-extrabold italic uppercase">
+          Cyber <span class="text-blue-500">Alliance</span> India
+        </div>
+        <div class="text-[10px] text-neutral-600 uppercase tracking-[0.2em]">
+          © {new Date().getFullYear()} Cyber Alliance India | Built with Intent.
+        </div>
+      </div>
+    )
+  }
+</footer>

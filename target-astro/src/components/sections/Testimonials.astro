@@ -1,0 +1,39 @@
+---
+// src/components/sections/Testimonials.astro
+import { TESTIMONIALS } from '../../data/site';
+
+const borderMap: Record<string, string> = {
+  blue: 'border-l-blue-500',
+  teal: 'border-l-teal-500',
+  purple: 'border-l-purple-500',
+};
+
+// Duplicate for seamless loop
+const all = [...TESTIMONIALS, ...TESTIMONIALS];
+---
+
+<section id="testimonials" class="py-16 md:py-24 bg-neutral-950 overflow-hidden">
+  <h2 class="text-3xl font-extrabold mb-12 text-center uppercase tracking-widest text-neutral-600">
+    Client Reviews
+  </h2>
+
+  <div class="slider-container">
+    <div class="testimonial-track">
+      <div class="flex gap-6 pr-6">
+        {
+          all.map((t) => (
+            <div
+              class={`glass-card p-8 rounded-2xl border-l-4 ${borderMap[t.color]} w-[85vw] sm:w-[380px] shrink-0`}
+            >
+              <p class="text-neutral-400 mb-6 italic">"{t.quote}"</p>
+              <div class="font-bold text-sm">
+                {t.name}
+                <span class="text-neutral-600 ml-2">| {t.service}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+---
+// src/layouts/BaseLayout.astro
+import '../styles/global.css';
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = SITE.name + ' | ' + SITE.tagline,
+  description = SITE.description,
+  ogImage = SITE.logo,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Web Development, Hosting, Gsuite, m365, remote it support, vmware, unraid, cybersec, itsec, unifi, ubiquity, cisco" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE.url + Astro.url.pathname} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={SITE.url + Astro.url.pathname} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href={SITE.logo} />
+
+    <!-- Umami Analytics -->
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id={SITE.umamiId}
+    ></script>
+  </head>
+  <body>
+    <slot />
+
+    <!-- Chatwoot Live Chat -->
+    <script define:vars={{ chatwootToken: SITE.chatwootToken }}>
+      window.chatwootSettings = {
+        position: 'right',
+        type: 'standard',
+        launcherTitle: 'Chat with us',
+        hideMessageBubble: false,
+      };
+      (function (d, t) {
+        var BASE_URL = 'https://app.chatwoot.com';
+        var g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        g.src = BASE_URL + '/packs/js/sdk.js';
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+          window.chatwootSDK.run({ websiteToken: chatwootToken, baseUrl: BASE_URL });
+        };
+      })(document, 'script');
+
+      window.addEventListener('chatwoot:ready', function () {
+        const triggerBtn = document.getElementById('chat-trigger');
+        if (triggerBtn) {
+          triggerBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.$chatwoot.toggle('open');
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

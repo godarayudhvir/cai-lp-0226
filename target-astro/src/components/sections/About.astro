@@ -1,0 +1,115 @@
+---
+// src/components/sections/About.astro
+---
+
+<section id="about" class="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+    <div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+        Securing Your Digital Future<br /><span class="text-blue-500">with Intent</span>
+      </h2>
+      <p class="text-neutral-400 mb-6 leading-relaxed">
+        Since 2022, we've provided enterprise-grade Managed IT services to help businesses scale
+        without tech headaches.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="p-6 bg-neutral-900/50 border border-neutral-800 rounded-2xl">
+          <i class="bi bi-cpu text-blue-500 text-2xl mb-3 block"></i>
+          <h4 class="font-bold">Next-Gen Tech</h4>
+          <p class="text-xs text-neutral-500">
+            Leveraging AI and virtualization to streamline your workflows.
+          </p>
+        </div>
+        <div class="p-6 bg-neutral-900/50 border border-neutral-800 rounded-2xl">
+          <i class="bi bi-shield-check text-teal-500 text-2xl mb-3 block"></i>
+          <h4 class="font-bold">Proactive Security</h4>
+          <p class="text-xs text-neutral-500">
+            24/7 monitoring and rapid incident response to keep your data safe.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative group h-full">
+      <div
+        class="absolute -inset-1 bg-gradient-to-r from-blue-600/10 to-teal-500/10 rounded-3xl blur opacity-30"
+      >
+      </div>
+
+      <div
+        class="relative glass-card rounded-3xl overflow-hidden border border-neutral-800 h-full min-h-[300px] md:min-h-[400px]"
+      >
+        <div class="absolute inset-0 overflow-hidden">
+          <iframe
+            id="methodology-video"
+            class="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 pointer-events-none object-cover"
+            src="https://www.youtube.com/embed/WNzQvTbRcis?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=WNzQvTbRcis&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+            title="Tech Showcase"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+
+        <div class="absolute bottom-6 right-6 z-20 flex space-x-3">
+          <a
+            href="https://www.youtube.com/watch?v=WNzQvTbRcis"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/10 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all active:scale-90"
+          >
+            <i class="bi bi-box-arrow-up-right text-sm"></i>
+          </a>
+          <button
+            id="mute-btn"
+            class="bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/10 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all active:scale-90"
+          >
+            <i id="mute-icon" class="bi bi-volume-mute text-lg"></i>
+          </button>
+        </div>
+
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent pointer-events-none"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let player: any;
+
+  function onYouTubeIframeAPIReady() {
+    player = new (window as any).YT.Player('methodology-video', {
+      events: {
+        onStateChange: function (event: any) {
+          if (event.data === (window as any).YT.PlayerState.ENDED) {
+            player.playVideo();
+          }
+        },
+      },
+    });
+  }
+
+  (window as any).onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+  document.getElementById('mute-btn')?.addEventListener('click', () => {
+    if (!player) return;
+    const icon = document.getElementById('mute-icon');
+    if (player.isMuted()) {
+      player.unMute();
+      icon?.classList.replace('bi-volume-mute', 'bi-volume-up');
+    } else {
+      player.mute();
+      icon?.classList.replace('bi-volume-up', 'bi-volume-mute');
+    }
+  });
+
+  if (!(window as any).YT) {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+</script>

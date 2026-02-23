@@ -1,0 +1,37 @@
+---
+// src/components/sections/Hero.astro
+import { SITE } from '../../data/site';
+---
+
+<section class="pt-32 md:pt-48 pb-12 md:pb-20 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+    <span
+      class="px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest bg-blue-500/5"
+    >
+      Established 2022
+    </span>
+    <h1 class="text-5xl md:text-8xl font-extrabold mb-8 mt-6 tracking-tighter leading-none">
+      Built with <span class="gradient-text">Intent.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-neutral-400 mb-12 max-w-2xl mx-auto font-light">
+      Engineering high-performance infrastructure with absolute intent.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+      <a
+        href="javascript:void(0)"
+        id="chat-trigger"
+        class="bg-white text-black px-8 py-3 md:px-10 md:py-4 rounded-xl font-bold hover:scale-105 transition transform text-sm md:text-base"
+      >
+        Live Chat
+      </a>
+      <a
+        href={SITE.calendar}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border border-neutral-700 px-8 py-3 md:px-10 md:py-4 rounded-xl font-bold hover:bg-neutral-900 transition text-sm md:text-base"
+      >
+        Schedule Meeting
+      </a>
+    </div>
+  </div>
+</section>

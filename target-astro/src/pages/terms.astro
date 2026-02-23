@@ -1,0 +1,101 @@
+---
+// src/pages/terms.astro
+import PolicyLayout from '../layouts/PolicyLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<PolicyLayout
+  title="Terms of Service - Cyber Alliance India | Built with Intent"
+  description="These terms are designed to ensure a transparent and secure partnership as we manage your digital infrastructure."
+  badge="Service Agreement"
+  heading="Terms of"
+  highlight="Service."
+  lastUpdated="December 30, 2025"
+>
+  <p>
+    Welcome to <strong>Cyber Alliance India</strong>. By engaging our services or using our
+    website, you agree to the following terms. These terms are designed to ensure a transparent and
+    secure partnership as we manage your digital infrastructure.
+  </p>
+
+  <h2>1. Scope of Managed Services</h2>
+  <p>
+    Cyber Alliance India provides engineering and IT services, including website development and
+    ongoing maintenance.
+  </p>
+  <ul>
+    <li>
+      <strong>24/7 Monitoring:</strong> We utilize <strong>Uptime Kuma</strong> to monitor client
+      websites 24/7. While we strive for maximum availability, uptime is subject to third-party
+      infrastructure stability.
+    </li>
+    <li>
+      <strong>Project Specifics:</strong> Each project is unique. The specific deliverables,
+      timelines, and costs are governed by individual project terms or Statements of Work (SOW).
+    </li>
+    <li>
+      <strong>Infrastructure:</strong> Our operations are supported by providers like Cloudflare
+      (Security) and GitHub (Deployment).
+    </li>
+  </ul>
+
+  <h2>2. Fees and Payment Terms</h2>
+  <p>We believe in fair compensation for high-quality engineering work.</p>
+  <ul>
+    <li>
+      <strong>Late Fees:</strong> Invoices not paid by the due date will incur a late fee of
+      <strong>5% of the total amount due</strong>.
+    </li>
+    <li>
+      <strong>Annual Adjustments:</strong> To account for inflation and rising infrastructure costs,
+      Annual Maintenance Contract (AMC) fees will increase by <strong>5% annually</strong>.
+    </li>
+    <li>
+      <strong>Secure Payments:</strong> All transactions are handled securely via
+      <strong>Cashfree</strong>. We do not store sensitive financial data on our servers.
+    </li>
+  </ul>
+
+  <h2>3. Limitation of Liability</h2>
+  <p>
+    While we take every precaution to secure your digital assets, our liability is limited as
+    follows:
+  </p>
+  <ul>
+    <li>
+      <strong>Data Loss:</strong> Cyber Alliance India is <strong>not responsible</strong> for any
+      data loss, corruption, or damage to the client, regardless of the cause. We recommend clients
+      maintain independent backups.
+    </li>
+    <li>
+      <strong>Indirect Damages:</strong> We are not liable for any indirect, incidental, or
+      consequential damages (such as loss of revenue) arising from service interruptions.
+    </li>
+    <li>
+      <strong>Security:</strong> While we implement industry-standard security via Cloudflare and
+      Zoho Mail, no internet-based service is 100% immune to threats.
+    </li>
+  </ul>
+
+  <h2>4. Termination of Service</h2>
+  <p>
+    Either party may terminate the service agreement with 30 days written notice. We reserve the
+    right to suspend services immediately if payments are significantly overdue or if the service is
+    used for illegal activities.
+  </p>
+
+  <h2>5. Governing Law</h2>
+  <p>
+    These terms are governed by the laws of India. Any disputes will be subject to the exclusive
+    jurisdiction of the courts in Delhi, India.
+  </p>
+
+  <h2>6. Contact Us</h2>
+  <p>
+    If you have questions about these terms or wish to discuss a project-specific agreement, please
+    contact us:
+  </p>
+  <p class="mb-0 text-sm">
+    Email: <a href={`mailto:${SITE.email}`} class="text-blue-500">{SITE.email}</a>
+  </p>
+</PolicyLayout>
